@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="system.io.abstractions" Version="13.2.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationCore\BlogApp.Dotnet.ApplicationCore.csproj" />
+    <ProjectReference Include="..\DAL\BlogApp.Dotnet.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
