@@ -42,21 +42,6 @@ namespace BlogApp.Dotnet.API
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BlogPostContext")));
 
-            services.Configure<IdentityOptions>(options => Configuration.GetSection("IdentityOptions").Bind(options));
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                options.Events.OnRedirectToAccessDenied = context =>
-                {
-                    context.Response.StatusCode = 403;
-                    return Task.CompletedTask;
-                };
-                options.LoginPath = "/Identity/Login";
-                options.SlidingExpiration = true;
-            });
-
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -101,9 +86,7 @@ namespace BlogApp.Dotnet.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "posts",
-                    pattern: "{controller=posts}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
